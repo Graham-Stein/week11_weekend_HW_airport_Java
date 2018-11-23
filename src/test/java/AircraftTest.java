@@ -13,7 +13,12 @@ public class AircraftTest {
     }
 
     @Test
-    public void test(){
+    public void canGetMaxSeatingCapacity(){
         assertEquals(50, aircraft.getMaxSeatCapacity());
+    }
+
+    @Test
+    public void canGetAircraftType(){
+        assertEquals(AircraftType.Saab2000, aircraft.getAircraftType());
     }
 }

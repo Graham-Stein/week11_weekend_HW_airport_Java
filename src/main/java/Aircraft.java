@@ -1,16 +1,16 @@
 public class Aircraft {
 
-    private AircraftType aircraft;
+    private AircraftType aircraftType;
 
-    public Aircraft(AircraftType aircraft){
-        this.aircraft = aircraft;
+    public Aircraft(AircraftType aircraftType){
+        this.aircraftType = aircraftType;
     }
 
-    public AircraftType getAircraft() {
-        return this.aircraft;
+    public AircraftType getAircraftType() {
+        return this.aircraftType;
     }
 
     public int getMaxSeatCapacity(){
-        return this.aircraft.getMaxPassengers();
+        return this.aircraftType.getMaxPassengers();
     }
 }
