@@ -9,12 +9,17 @@ public class AircraftTest {
 
     @Before
     public void before(){
-        aircraft = new Aircraft(AircraftType.Saab2000);
+        aircraft = new Aircraft("G-REDP", AircraftType.Saab2000);
     }
 
     @Test
     public void canGetMaxSeatingCapacity(){
         assertEquals(50, aircraft.getMaxSeatCapacity());
+    }
+
+    @Test
+    public void hasRegistration(){
+        assertEquals("G-REDP", aircraft.getRegistration());
     }
 
     @Test

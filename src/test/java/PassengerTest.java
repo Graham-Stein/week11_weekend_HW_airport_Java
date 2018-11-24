@@ -11,17 +11,12 @@ public class PassengerTest {
     @Before
     public void before(){
         passenger = new Passenger("Bill");
-        ticket = new Ticket("Aberdeen");
+        ticket = new Ticket("Aberdeen", passenger);
     }
 
     @Test
-    public void customerHasName(){
+    public void passengerHasName(){
         assertEquals("Bill", passenger.getName());
     }
 
-    @Test
-    public void canAllocateTicketToCustomer(){
-        passenger.setTicket(ticket);
-        assertEquals("Aberdeen", passenger.getTicketDestination());
-    }
 }

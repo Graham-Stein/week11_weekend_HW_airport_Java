@@ -6,14 +6,22 @@ import static org.junit.Assert.assertEquals;
 public class TicketTest {
 
     private Ticket ticket;
+    private Passenger passenger;
 
     @Before
     public void before(){
-        ticket = new Ticket("Aberdeen");
+        passenger = new Passenger("Bill");
+        ticket = new Ticket("Aberdeen", passenger);
     }
 
     @Test
     public void getTicketDestination(){
         assertEquals("Aberdeen", ticket.getDestination());
     }
+
+    @Test
+    public void customerHasName(){
+        assertEquals("Bill", passenger.getName());
+    }
+
 }

@@ -1,18 +1,31 @@
+import java.util.ArrayList;
+
 public class Hangar {
 
-    private int aircraftParkingSpaces;
+    private int aircraftParkingCapacity;
     private String hangarName;
+    private ArrayList<Aircraft> hangarInventory;
 
-    public Hangar(String hangarName, int aircraftParkingSpaces){
+    public Hangar(String hangarName, int aircraftParkingCapacity){
         this.hangarName = hangarName;
-        this.aircraftParkingSpaces = aircraftParkingSpaces;
+        this.aircraftParkingCapacity = aircraftParkingCapacity;
+        this.hangarInventory = new ArrayList<>();
     }
 
-    public int getAircraftParkingSpaces(){
-        return this.aircraftParkingSpaces;
+    public int getAircraftParkingCapacity(){
+        return this.aircraftParkingCapacity;
     }
 
     public String getHangarName(){
         return this.hangarName;
+    }
+
+    public void addAircraft(Aircraft aircraft){
+        this.hangarInventory.add(aircraft);
+    }
+
+    public int getNumberOfRemainingSpaces(){
+        int spacesUsed = this.hangarInventory.size();
+        return this.aircraftParkingCapacity - spacesUsed;
     }
 }
