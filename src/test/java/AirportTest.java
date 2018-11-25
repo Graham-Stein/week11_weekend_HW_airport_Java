@@ -60,8 +60,10 @@ public class AirportTest {
     @Test
     public void canCheckPassengerOnToFlight(){
         airport.addFlight(flight);
+        flight.addTicketToManifest(ticket);
         airport.checkPassengerOnToFlight(flightID, ticket, passenger);
-        assertEquals("Bill", flight.getPassengersOnAircraft().get(0));
+        String paxName = flight.getPassengersOnAircraft().get(0).getName();
+        assertEquals("Bill", paxName);
     }
 
     @Test
@@ -88,6 +90,14 @@ public class AirportTest {
     public void passengerNameDoesNotMatchTicket(){
         Boolean testValue = airport.passengerNameMatchesTicket(ticket, passenger1);
         assertEquals(false, testValue);
+    }
+
+    @Test
+    public void passengerTicketMatchesManifestItem(){
+        airport.addFlight(flight);
+        flight.addTicketToManifest(ticket);
+        Boolean testValue = airport.passengerTicketMatchesManifestItem(ticket, flight.getManifest());
+        assertEquals(true, testValue);
     }
 
 }

@@ -33,20 +33,19 @@ public class Airport {
     }
 
     public void checkPassengerOnToFlight(String flightID, Ticket ticket, Passenger passenger) {
-//        for each flight in flights
-//        if the flight ID matches the flight in flights
-        Flight flight = findMatchingFlightByID(flightID);
-//        check to see if the ticket name and passenger name match
-        Boolean match = passengerNameMatchesTicket(ticket, passenger);
 
-        if (match) {
+        Flight flight = findMatchingFlightByID(flightID);
+        ArrayList<Ticket> flightManifest = flight.getManifest();
+
+        Boolean match = passengerNameMatchesTicket(ticket, passenger);
+        Boolean paxIsOnManifest = passengerTicketMatchesManifestItem(ticket, flightManifest);
+
+        if (match && paxIsOnManifest) {
             if (flight.getID().equals(ticket.getTicketFlightID())){
-                flight.addTicketToManifest(ticket);
+                flight.addPassengerToFlight(ticket);
             }
         }
         return;
-//        then check to see if the ticket is on the manifest
-//        if tickets match, add the ticket to the paxOnFlight list
     }
 
     public Flight findMatchingFlightByID(String flightID) {
@@ -65,7 +64,12 @@ public class Airport {
         return false;
      }
 
-
-
-//    CHECK TICKET - Take ticket and check if flight has that ticket on the manifest return boolean.
+     public Boolean passengerTicketMatchesManifestItem(Ticket ticket, ArrayList<Ticket> flightManifest) {
+         for (Ticket manifestTicket : flightManifest) {
+             if (manifestTicket.equals(ticket)) {
+                 return true;
+             }
+         }
+         return false;
+     }
 }
