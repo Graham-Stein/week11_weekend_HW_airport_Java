@@ -1,15 +1,18 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Airport {
 
     private String airportID;
     private ArrayList<Hangar> hangars;
     private ArrayList<Flight> flights;
+    private HashMap<String, Integer> destinationTotalPassengers;
 
     public Airport(String ID){
         this.airportID = ID;
         this.hangars = new ArrayList<>();
         this.flights = new ArrayList<>();
+        this.destinationTotalPassengers = new HashMap<>();
     }
 
     public String getAirportID() {
@@ -43,6 +46,7 @@ public class Airport {
         if (match && paxIsOnManifest) {
             if (flight.getID().equals(ticket.getTicketFlightID())){
                 flight.addPassengerToFlight(ticket);
+              this.addPaxToDestinationTotalPassengers(ticket.getDestination());
             }
         }
         return;
@@ -72,4 +76,20 @@ public class Airport {
          }
          return false;
      }
+
+     public void addPaxToDestinationTotalPassengers(String destination){
+         if (this.destinationTotalPassengers.containsKey(destination)){
+             int value = this.destinationTotalPassengers.get(destination);
+             this.destinationTotalPassengers.put(destination, value + 1);
+         } else
+             this.destinationTotalPassengers.put(destination, 1);
+         }
+
+    public int getTotalPassengers(String destination) {
+        int result = 0;
+        if(this.destinationTotalPassengers.containsKey(destination)){
+            result = this.destinationTotalPassengers.get(destination);
+        }
+        return result;
+    }
 }
