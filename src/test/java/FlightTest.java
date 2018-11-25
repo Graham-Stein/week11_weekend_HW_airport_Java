@@ -19,10 +19,10 @@ public class FlightTest {
         ticket = new Ticket("Aberdeen", passenger);
     }
 
-//    @Test
-//    public void hasEmptyManifest(){
-//        assertEquals(0, flight.getManifest().size());
-//    }
+    @Test
+    public void hasEmptyManifest(){
+        assertEquals(0, flight.getManifest().size());
+    }
 
     @Test
     public void hasFlightID(){
@@ -46,7 +46,9 @@ public class FlightTest {
 
     @Test
     public void canAddTicketToManifest(){
-        flight.addTicketToManifest(ticket);
-        assertEquals(1, flight.getManifest().size());
+        for (int i = 0; i < (aircraft.getMaxSeatCapacity() + 2); i++) {
+            flight.addTicketToManifest(ticket);
+        }
+        assertEquals(37, flight.getManifest().size());
     }
 }

@@ -7,12 +7,14 @@ public class Flight {
     private String destination;
     private ArrayList<Ticket> manifest;
     private Ticket ticket;
+    private ArrayList<Ticket> passengersOnAircraft;
 
     public Flight(String flightID, String destination, Aircraft aircraft){
         this.flightID = flightID;
         this.aircraft = aircraft;
         this.destination = destination;
         this.manifest = new ArrayList<>();
+        this.passengersOnAircraft = new ArrayList<>();
     }
 
     public String getID() {
@@ -32,7 +34,10 @@ public class Flight {
     }
 
     public void addTicketToManifest(Ticket ticket){
-        this.manifest.add(ticket);
+        if (this.manifest.size() < this.aircraft.getMaxSeatCapacity()) {
+            this.manifest.add(ticket);
+        }
+        return;
     }
 
     public ArrayList getManifest() {

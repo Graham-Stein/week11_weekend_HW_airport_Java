@@ -18,12 +18,16 @@ public class AirlineTest {
 
     private Passenger passenger;
 
+    private Airport airport;
+
 
 
     @Before
     public void before(){
         airline = new Airline("Scumbag Airways");
         airline1 = new Airline("Shetland Air");
+
+        airport = new Airport("EGPB");
 
         hangar = new Hangar("Virkie", 5);
 
@@ -55,5 +59,21 @@ public class AirlineTest {
         airline.sellTicket("Aberdeen", passenger, flight);
         assertEquals(1, flight.getManifest().size());
     }
+
+    @Test
+    public void canSellTicketAndGiveTicketToCuatomer(){
+        Ticket ticket = airline.sellTicket("Aberdeen", passenger, flight);
+        assertEquals("Bill", ticket.getName());
+    }
+
+    @Test
+    public void canAssignNewFlight(){
+        airline.assignNewFlight("LSI002", "Glasgow", aircraft, airport);
+        Object testFlight;
+        testFlight = airport.getFlights().get(0);
+        assertEquals("LSI002", ((Flight) testFlight).getID());
+    }
+
+
 
 }
