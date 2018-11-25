@@ -16,7 +16,7 @@ public class FlightTest {
         flight = new Flight("LSI001", "Aberdeen", aircraft );
 
         passenger = new Passenger("Bill");
-        ticket = new Ticket("Aberdeen", passenger);
+        ticket = new Ticket("LSI001","Aberdeen", passenger);
     }
 
     @Test
@@ -50,5 +50,11 @@ public class FlightTest {
             flight.addTicketToManifest(ticket);
         }
         assertEquals(37, flight.getManifest().size());
+    }
+
+    @Test
+    public void canAddPassengerToFlight(){
+        flight.addPassengerToFlight(ticket);
+        assertEquals("Bill", flight.getPassengersOnAircraft().get(0).getName());
     }
 }

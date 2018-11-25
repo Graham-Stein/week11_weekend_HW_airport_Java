@@ -4,9 +4,12 @@ public class Ticket {
 
     private Passenger passenger;
 
-    public Ticket(String destination, Passenger passenger){
+    private String ticketFlightID;
+
+    public Ticket(String ticketFlightID, String destination, Passenger passenger){
         this.destination = destination;
         this.passenger = passenger;
+        this.ticketFlightID = ticketFlightID;
     }
 
     public String getDestination(){
@@ -15,6 +18,10 @@ public class Ticket {
 
     public String getName(){
         return this.passenger.getName();
+    }
+
+    public String getTicketFlightID(){
+        return this.ticketFlightID;
     }
 
 }

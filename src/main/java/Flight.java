@@ -43,4 +43,12 @@ public class Flight {
     public ArrayList getManifest() {
         return this.manifest;
     }
+
+    public ArrayList<Ticket> getPassengersOnAircraft(){
+        return this.passengersOnAircraft;
+    }
+
+    public void addPassengerToFlight(Ticket ticket) {
+        this.passengersOnAircraft.add(ticket);
+    }
 }

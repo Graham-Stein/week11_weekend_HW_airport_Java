@@ -12,6 +12,10 @@ public class AirportTest {
     private Hangar hangar1;
     private Aircraft aircraft;
     private Flight flight;
+    private Ticket ticket;
+    private Passenger passenger;
+    private Passenger passenger1;
+    private String flightID;
 
     @Before
     public void before(){
@@ -22,6 +26,12 @@ public class AirportTest {
 
         aircraft = new Aircraft("G-REDP", AircraftType.Embraer135);
         flight = new Flight("LSI001", "Aberdeen", aircraft );
+
+        passenger = new Passenger("Bill");
+        passenger1 = new Passenger("Ted");
+        ticket = new Ticket("LSI001","Aberdeen", passenger);
+
+        flightID = "LSI001";
     }
 
     @Test
@@ -46,4 +56,38 @@ public class AirportTest {
         airport.addFlight(flight);
         assertEquals(1, airport.getFlights().size());
     }
+
+    @Test
+    public void canCheckPassengerOnToFlight(){
+        airport.addFlight(flight);
+        airport.checkPassengerOnToFlight(flightID, ticket, passenger);
+        assertEquals("Bill", flight.getPassengersOnAircraft().get(0));
+    }
+
+    @Test
+    public void canFindFlightByIDFromFlightsArrayList(){
+        airport.addFlight(flight);
+        Flight actual = airport.findMatchingFlightByID("LSI001");
+        assertEquals(flight, actual);
+    }
+
+    @Test
+    public void flightByIDFromFlightsArrayListReturnsVoidIfNotPresent(){
+        airport.addFlight(flight);
+        Flight actual = airport.findMatchingFlightByID("LSI002");
+        assertEquals(null, actual);
+    }
+
+    @Test
+    public void passengerNameMatchesTicket(){
+        Boolean testValue = airport.passengerNameMatchesTicket(ticket, passenger);
+        assertEquals(true, testValue);
+    }
+
+    @Test
+    public void passengerNameDoesNotMatchTicket(){
+        Boolean testValue = airport.passengerNameMatchesTicket(ticket, passenger1);
+        assertEquals(false, testValue);
+    }
+
 }

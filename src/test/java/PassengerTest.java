@@ -11,7 +11,7 @@ public class PassengerTest {
     @Before
     public void before(){
         passenger = new Passenger("Bill");
-        ticket = new Ticket("Aberdeen", passenger);
+        ticket = new Ticket("LSI001","Aberdeen", passenger);
     }
 
     @Test

@@ -11,7 +11,7 @@ public class TicketTest {
     @Before
     public void before(){
         passenger = new Passenger("Bill");
-        ticket = new Ticket("Aberdeen", passenger);
+        ticket = new Ticket("LSI004","Aberdeen", passenger);
     }
 
     @Test
@@ -22,6 +22,11 @@ public class TicketTest {
     @Test
     public void customerHasName(){
         assertEquals("Bill", passenger.getName());
+    }
+
+    @Test
+    public void getTicketFlightID(){
+        assertEquals("LSI004", ticket.getTicketFlightID());
     }
 
 }

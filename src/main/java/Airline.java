@@ -31,7 +31,8 @@ public class Airline {
 //        call method in hangar/airport to move aircraft to flight
 
     public Ticket sellTicket(String destination, Passenger passenger, Flight flight){
-        Ticket ticket = new Ticket(destination, passenger);
+        String flightID = flight.getID();
+        Ticket ticket = new Ticket(flightID, destination, passenger);
         flight.addTicketToManifest(ticket);
         return ticket;
     }
